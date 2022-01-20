@@ -1,0 +1,40 @@
+﻿<Window x:Class="PrescriptionManagementSystem.SignUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrescriptionManagementSystem"
+        mc:Ignorable="d"
+        Title="SignUp" Height="208.83" Width="231.725" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:infosys202125DataSet x:Key="infosys202125DataSet"/>
+        <CollectionViewSource x:Key="userViewSource" Source="{Binding User, Source={StaticResource infosys202125DataSet}}"/>
+    </Window.Resources>
+    <Grid Margin="0,0,-1,-2" DataContext="{StaticResource userViewSource}">
+        
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="21,23,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        </Grid>
+        <Grid x:Name="grid2" HorizontalAlignment="Left" Margin="21,67,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="password:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="passwordTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        </Grid>
+        <Button Content="キャンセル" x:Name="Cancel" Click="Cancel_Click" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="9,0,0,33"/>
+        <Button Content="登録" x:Name="Signup" Click="Signup_Click" Width="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,33"/>
+    </Grid>
+</Window>
