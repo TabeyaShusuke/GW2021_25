@@ -25,7 +25,7 @@ namespace PrescriptionManagementSystem {
 
         private void Login_Click(object sender, RoutedEventArgs e) {
             try {
-                var user = new UserTableAdapter().GetDataByLogin(UserId.Text, Password.Text);
+                var user = new UserTableAdapter().GetDataByLogin(UserId.Text, Password.Password);
                 var login = new User();
                 login.Id = user.First().id;
                 login.Password = user.First().password;

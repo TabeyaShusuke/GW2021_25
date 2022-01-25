@@ -12,35 +12,47 @@
         <CollectionViewSource x:Key="medicineViewSource" Source="{Binding Medicine, Source={StaticResource infosys202125DataSet}}"/>
     </Page.Resources>
 
-    <Grid DataContext="{StaticResource medicineViewSource}">
-        <Button Content="ログアウト" x:Name="Logout" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,7,37,0" Height="32" Width="71" Click="Logout_Click"/>
+    <Grid DataContext="{StaticResource medicineViewSource}" Background="#FFE2CECE">
+        <Button Content="ログアウト" x:Name="Logout" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,7,37,0" Height="53" Width="94" Click="Logout_Click"/>
         <TextBox x:Name="SearchName" Margin="14,5,523,390" />
         <Button x:Name="Search_button" Content="検索" Margin="295,5,404,380" Click="Search_button_Click"/>
         <Button Content="追加" x:Name="Add_button" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="19,356,0,18" Width="112" Click="Add_button_Click" />
         <Button Content="編集" x:Name="Change_button" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="158,356,0,20" Width="112" Click="Change_button_Click"/>
-        <DataGrid x:Name="medicineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="14,95,264,121" RowDetailsVisibilityMode="VisibleWhenSelected">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
-                <DataGridTemplateColumn x:Name="typeColumn" Header="Type" Width="SizeToHeader">
-                    <DataGridTemplateColumn.CellTemplate>
+        <DataGrid x:Name="medicineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="14,95,14,121" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" AlternatingRowBackground="#FFAFF9F6">
+            <DataGrid.Columns >
+                <!--<DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="*" />-->
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="*" IsReadOnly="True"/>
+                <DataGridTemplateColumn x:Name="typeColumn" Header="Type" Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <ComboBox>
+                            <ComboBox IsReadOnly="True" IsHitTestVisible="False" IsTabStop="False">
                                 <ComboBoxItem Content="{Binding Type}"/>
+                                <ComboBoxItem Content="錠剤" />
+                                <ComboBoxItem Content="カプセル剤"/>
+                                <ComboBoxItem Content="散剤"/>
+                                <ComboBoxItem Content="顆粒剤"/>
+                                <ComboBoxItem Content="液剤"/>
+                                <ComboBoxItem Content="坐剤"/>
+                                <ComboBoxItem Content="貼り薬"/>
+                                <ComboBoxItem Content="塗り薬"/>
+                                <ComboBoxItem Content="点眼剤"/>
+                                <ComboBoxItem Content="吸入剤"/>
+                                <ComboBoxItem Content="噴霧剤"/>
+                                <ComboBoxItem Content="その他"/>
                             </ComboBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="intervalColumn" Header="Interval" Width="SizeToHeader">
+                <DataGridTemplateColumn x:Name="intervalColumn" Header="Interval" Width="*" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DatePicker SelectedDate="{Binding Interval, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn x:Name="dosingColumn" Binding="{Binding dosing}" Header="dosing" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="precautionColumn" Binding="{Binding Precaution}" Header="Precaution" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="useridColumn" Binding="{Binding userid}" Header="userid" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="dosingColumn" Binding="{Binding dosing}" Header="dosing" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="precautionColumn" Binding="{Binding Precaution}" Header="Precaution" Width="*" IsReadOnly="True"/>
+                <!--<DataGridTextColumn x:Name="useridColumn" Binding="{Binding userid}" Header="userid" Width="*" IsReadOnly="True"/>-->
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

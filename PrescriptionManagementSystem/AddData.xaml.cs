@@ -18,18 +18,22 @@ namespace PrescriptionManagementSystem {
     /// AddData.xaml の相互作用ロジック
     /// </summary>
     public partial class AddData : Window {
+        infosys202125DataSet infosys202125DataSet;
+        infosys202125DataSetTableAdapters.MedicineTableAdapter infosys202125DataSetMedicineTableAdapter;
+        CollectionViewSource medicineViewSource;
         public AddData() {
             InitializeComponent();
+            infosys202125DataSet = ((PrescriptionManagementSystem.infosys202125DataSet)(this.FindResource("infosys202125DataSet")));
+            // テーブル Medicine にデータを読み込みます。必要に応じてこのコードを変更できます。
+            infosys202125DataSetMedicineTableAdapter = new PrescriptionManagementSystem.infosys202125DataSetTableAdapters.MedicineTableAdapter();
+            infosys202125DataSetMedicineTableAdapter.Fill(infosys202125DataSet.Medicine);
+            medicineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("medicineViewSource")));
+            medicineViewSource.View.MoveCurrentToFirst();
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
 
-            PrescriptionManagementSystem.infosys202125DataSet infosys202125DataSet = ((PrescriptionManagementSystem.infosys202125DataSet)(this.FindResource("infosys202125DataSet")));
-            // テーブル Medicine にデータを読み込みます。必要に応じてこのコードを変更できます。
-            PrescriptionManagementSystem.infosys202125DataSetTableAdapters.MedicineTableAdapter infosys202125DataSetMedicineTableAdapter = new PrescriptionManagementSystem.infosys202125DataSetTableAdapters.MedicineTableAdapter();
-            infosys202125DataSetMedicineTableAdapter.Fill(infosys202125DataSet.Medicine);
-            System.Windows.Data.CollectionViewSource medicineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("medicineViewSource")));
-            medicineViewSource.View.MoveCurrentToFirst();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e) {
@@ -37,9 +41,23 @@ namespace PrescriptionManagementSystem {
         }
 
         private void Add_Click(object sender, RoutedEventArgs e) {
-            new MedicineTableAdapter().InsertData(nameTextBox.Text,typeComboBox.Text,
-                                                  intervalDatePicker.Text,dosingTextBox.Text,precautionTextBox.Text,
+            try {
+                new MedicineTableAdapter().InsertData(nameTextBox.Text, typeComboBox.Text,
+                                                  intervalDatePicker.Text, dosingTextBox.Text, precautionTextBox.Text,
                                                   useridTextBox.Text);
+                MessageBox.Show("追加しました。");
+                
+
+                this.Close();
+                
+                
+            }
+            catch (Exception) {
+
+                throw;
+            }
+            
+
         }
     }
 }

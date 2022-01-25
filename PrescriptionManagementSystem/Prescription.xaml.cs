@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PrescriptionManagementSystem.infosys202125DataSetTableAdapters;
 
 namespace PrescriptionManagementSystem {
     /// <summary>
@@ -29,7 +30,7 @@ namespace PrescriptionManagementSystem {
             infosys202125DataSet = ((PrescriptionManagementSystem.infosys202125DataSet)(this.FindResource("infosys202125DataSet")));
             // テーブル Medicine にデータを読み込みます。必要に応じてこのコードを変更できます。
             infosys202125DataSetMedicineTableAdapter = new PrescriptionManagementSystem.infosys202125DataSetTableAdapters.MedicineTableAdapter();
-            infosys202125DataSetMedicineTableAdapter.Fill(infosys202125DataSet.Medicine);
+            infosys202125DataSetMedicineTableAdapter.FillByUser(infosys202125DataSet.Medicine,name.Id,name.Password);
             medicineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("medicineViewSource")));
             medicineViewSource.View.MoveCurrentToFirst();
             user = name;
@@ -43,14 +44,21 @@ namespace PrescriptionManagementSystem {
         private void Add_button_Click(object sender, RoutedEventArgs e) {
             var win = new AddData();
             win.ShowDialog();
+            infosys202125DataSet = ((PrescriptionManagementSystem.infosys202125DataSet)(this.FindResource("infosys202125DataSet")));
+            // テーブル Medicine にデータを読み込みます。必要に応じてこのコードを変更できます。
+            infosys202125DataSetMedicineTableAdapter = new PrescriptionManagementSystem.infosys202125DataSetTableAdapters.MedicineTableAdapter();
+            infosys202125DataSetMedicineTableAdapter.Fill(infosys202125DataSet.Medicine);
+            medicineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("medicineViewSource")));
+            medicineViewSource.View.MoveCurrentToFirst();
+
         }
 
         private void Search_button_Click(object sender, RoutedEventArgs e) {
-
+            
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e) {
-
+            
         }
     }
 }

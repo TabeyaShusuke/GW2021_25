@@ -35,12 +35,25 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Type:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <ComboBox x:Name="typeComboBox" Grid.Column="1" DisplayMemberPath="Type" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120">
-                <ComboBox.ItemsPanel>
+            <ComboBox x:Name="typeComboBox" Grid.Column="1" DisplayMemberPath="Type" HorizontalAlignment="Left" Height="Auto"  Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120">
+                <!--<ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
+                        
                     </ItemsPanelTemplate>
-                </ComboBox.ItemsPanel>
+                </ComboBox.ItemsPanel>-->
+                <ComboBoxItem Content="錠剤" />
+                <ComboBoxItem Content="カプセル剤"/>
+                <ComboBoxItem Content="散剤"/>
+                <ComboBoxItem Content="顆粒剤"/>
+                <ComboBoxItem Content="液剤"/>
+                <ComboBoxItem Content="坐剤"/>
+                <ComboBoxItem Content="貼り薬"/>
+                <ComboBoxItem Content="塗り薬"/>
+                <ComboBoxItem Content="点眼剤"/>
+                <ComboBoxItem Content="吸入剤"/>
+                <ComboBoxItem Content="噴霧剤"/>
+                <ComboBoxItem Content="その他"/>
             </ComboBox>
         </Grid>
         <Grid x:Name="grid4" DataContext="{StaticResource medicineViewSource}" HorizontalAlignment="Left" Margin="46,142,0,0" VerticalAlignment="Top">

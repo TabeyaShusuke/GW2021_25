@@ -7,12 +7,12 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Login">
-    <Grid>
-        <Label Content="ログイン画面" HorizontalAlignment="Center" VerticalAlignment="Top" Width="327" Height="60" Margin="296,67,177,0" FontSize="22" />
-        <Label Content="ユーザーID" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="88,160,0,0" Height="50" Width="137"/>
-        <TextBox x:Name="UserId" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="310,0,204,230" Width="278" Height="49"/>
-        <Label Content="パスワード" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="93,0,570,158" Height="50" Width="137"/>
-        <TextBox x:Name="Password" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="308,0,203,158" Width="281" Height="49"/>
+    <Grid Background="#FFE2EEE5">
+        <Label Content="ログイン画面" HorizontalAlignment="Center" VerticalAlignment="Top" Width="327" Height="60" Margin="296,67,177,0" FontSize="36" />
+        <Label Content="ユーザーID" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="97,134,0,0" Height="50" Width="169" FontSize="36"/>
+        <TextBox x:Name="UserId" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="315,0,153,230" Width="332" Height="49" FontSize="36"/>
+        <Label Content="パスワード" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="95,0,538,169" Height="50" Width="167" FontSize="36"/>
+        <PasswordBox x:Name="Password" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="312,0,148,158" Width="340" Height="49" PasswordChar="●" FontSize="36"/>
         <Button Content="ログイン" x:Name="Loginwindow" HorizontalAlignment="Right" VerticalAlignment="Stretch" Click="Login_Click" Margin="0,353,97,27" Width="128"/>
         <Button Content="新規登録" x:Name="Addwindow" HorizontalAlignment="Right" VerticalAlignment="Stretch" Click="Addwindow_Click" Margin="0,349,565,31" Width="128"/>
 

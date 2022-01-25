@@ -58,6 +58,9 @@
     <Compile Include="AddData.xaml.cs">
       <DependentUpon>AddData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="infosys202125DataSet.cs">
+      <DependentUpon>infosys202125DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
