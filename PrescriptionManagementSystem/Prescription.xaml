@@ -13,47 +13,38 @@
     </Page.Resources>
 
     <Grid DataContext="{StaticResource medicineViewSource}" Background="#FFE2CECE">
-        <Button Content="ログアウト" x:Name="Logout" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,7,37,0" Height="53" Width="94" Click="Logout_Click"/>
-        <TextBox x:Name="SearchName" Margin="14,5,523,390" />
-        <Button x:Name="Search_button" Content="検索" Margin="295,5,404,380" Click="Search_button_Click"/>
-        <Button Content="追加" x:Name="Add_button" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="19,356,0,18" Width="112" Click="Add_button_Click" />
-        <Button Content="編集" x:Name="Change_button" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="158,356,0,20" Width="112" Click="Change_button_Click"/>
-        <DataGrid x:Name="medicineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="14,95,14,121" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" AlternatingRowBackground="#FFAFF9F6">
-            <DataGrid.Columns >
-                <!--<DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="*" />-->
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="*" IsReadOnly="True"/>
-                <DataGridTemplateColumn x:Name="typeColumn" Header="Type" Width="*" IsReadOnly="True">
-                    <DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate>
-                            <ComboBox IsReadOnly="True" IsHitTestVisible="False" IsTabStop="False">
-                                <ComboBoxItem Content="{Binding Type}"/>
-                                <ComboBoxItem Content="錠剤" />
-                                <ComboBoxItem Content="カプセル剤"/>
-                                <ComboBoxItem Content="散剤"/>
-                                <ComboBoxItem Content="顆粒剤"/>
-                                <ComboBoxItem Content="液剤"/>
-                                <ComboBoxItem Content="坐剤"/>
-                                <ComboBoxItem Content="貼り薬"/>
-                                <ComboBoxItem Content="塗り薬"/>
-                                <ComboBoxItem Content="点眼剤"/>
-                                <ComboBoxItem Content="吸入剤"/>
-                                <ComboBoxItem Content="噴霧剤"/>
-                                <ComboBoxItem Content="その他"/>
-                            </ComboBox>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="intervalColumn" Header="Interval" Width="*" IsReadOnly="True">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DatePicker SelectedDate="{Binding Interval, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn x:Name="dosingColumn" Binding="{Binding dosing}" Header="dosing" Width="*" IsReadOnly="True"/>
-                <DataGridTextColumn x:Name="precautionColumn" Binding="{Binding Precaution}" Header="Precaution" Width="*" IsReadOnly="True"/>
-                <!--<DataGridTextColumn x:Name="useridColumn" Binding="{Binding userid}" Header="userid" Width="*" IsReadOnly="True"/>-->
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="80" Width="800"  >
+            <Label Content="名前:" Margin="0,20,0,0" FontSize="24"/>
+            <TextBox x:Name="SearchName" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Margin="0,20,0,0" Height="36" Width="122" FontSize="24" />
+            <Label Content="ユーザー名:" Margin="0,20,0,0" FontSize="24"/>
+            <TextBox x:Name="Searcid" HorizontalAlignment="Left" Height="36" Margin="0,30,0,0" VerticalAlignment="Top" Width="122"  FontSize="24"/>
+            <Button x:Name="Search" Content="検索" Margin="20,32,0,14" Click="Search_Click" Width="73"/>
+            <Button x:Name="Done" Content="終了" HorizontalAlignment="Left" Margin="200,32,0,0" VerticalAlignment="Top" Width="73" Height="33"/>
+
+        </StackPanel>
+        <StackPanel  Orientation="Horizontal" Margin="0,76,0,98" >
+            <DataGrid AlternatingRowBackground="LightCyan" x:Name="medicineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,11" RowDetailsVisibilityMode="VisibleWhenSelected" Width="755" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <!--<DataGridTextColumn x:Name="useridColumn" Binding="{Binding userid}" Header="userid" Width="SizeToHeader"/>-->
+                    <!--<DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="SizeToHeader"/>-->
+                    <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="*"/>
+                    <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type}" Header="Type" Width="*"/>
+                    <DataGridTemplateColumn x:Name="intervalColumn" Header="Interval" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding Interval, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn x:Name="dosingColumn" Binding="{Binding dosing}" Header="dosing" Width="*"/>
+                    <DataGridTextColumn x:Name="precautionColumn" Binding="{Binding Precaution}" Header="Precaution" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="2,354,0,0" RenderTransformOrigin="0.603,0.583">
+            <Button Content="追加" x:Name="Add_button" Click="Add_button_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,-20,0,0" Height="50" Width="70"/>
+            <Button Content="更新" x:Name="Change_button" Click="Change_button_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,-20,0,0" Height="50" Width="70"/>
+            <Button Content="添付文書" x:Name="pmda" Click="pmda_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,-20,0,0" Width="70" Height="50"/>
+        </StackPanel>
     </Grid>
 </Page>

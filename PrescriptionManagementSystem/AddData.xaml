@@ -26,36 +26,6 @@
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <Grid x:Name="grid3" DataContext="{StaticResource medicineViewSource}" HorizontalAlignment="Left" Margin="44,103,0,0" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Label Content="Type:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <ComboBox x:Name="typeComboBox" Grid.Column="1" DisplayMemberPath="Type" HorizontalAlignment="Left" Height="Auto"  Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120">
-                <!--<ComboBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel/>
-                        
-                    </ItemsPanelTemplate>
-                </ComboBox.ItemsPanel>-->
-                <ComboBoxItem Content="錠剤" />
-                <ComboBoxItem Content="カプセル剤"/>
-                <ComboBoxItem Content="散剤"/>
-                <ComboBoxItem Content="顆粒剤"/>
-                <ComboBoxItem Content="液剤"/>
-                <ComboBoxItem Content="坐剤"/>
-                <ComboBoxItem Content="貼り薬"/>
-                <ComboBoxItem Content="塗り薬"/>
-                <ComboBoxItem Content="点眼剤"/>
-                <ComboBoxItem Content="吸入剤"/>
-                <ComboBoxItem Content="噴霧剤"/>
-                <ComboBoxItem Content="その他"/>
-            </ComboBox>
-        </Grid>
         <Grid x:Name="grid4" DataContext="{StaticResource medicineViewSource}" HorizontalAlignment="Left" Margin="46,142,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -102,6 +72,17 @@
         </Grid>
         <Button Content="キャンセル" x:Name="Cancel" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="75" Height="50" Margin="9,117.614,0,20" Click="Cancel_Click" Grid.Row="1"/>
         <Button Content="追加" x:Name="Add" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="75" Height="50" Margin="193,119.614,0,18" Click="Add_Click" Grid.Row="1"/>
+        <Grid x:Name="grid1" DataContext="{StaticResource medicineViewSource}" HorizontalAlignment="Left" Margin="50,109,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Type:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="typeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Type, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        </Grid>
 
     </Grid>
 </Window>

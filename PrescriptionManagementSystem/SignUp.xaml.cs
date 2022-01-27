@@ -24,7 +24,6 @@ namespace PrescriptionManagementSystem {
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
-
             PrescriptionManagementSystem.infosys202125DataSet infosys202125DataSet = ((PrescriptionManagementSystem.infosys202125DataSet)(this.FindResource("infosys202125DataSet")));
             // テーブル User にデータを読み込みます。必要に応じてこのコードを変更できます。
             PrescriptionManagementSystem.infosys202125DataSetTableAdapters.UserTableAdapter infosys202125DataSetUserTableAdapter = new PrescriptionManagementSystem.infosys202125DataSetTableAdapters.UserTableAdapter();
@@ -39,6 +38,8 @@ namespace PrescriptionManagementSystem {
 
         private void Signup_Click(object sender, RoutedEventArgs e) {
             try {
+                idTextBox.Text = string.Empty;
+                passwordTextBox.Text = string.Empty;
                 new UserTableAdapter().InsertUser(idTextBox.Text, passwordTextBox.Text);
                 MessageBox.Show("登録完了しました。");
                 this.Close();

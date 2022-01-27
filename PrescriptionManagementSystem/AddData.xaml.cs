@@ -21,6 +21,7 @@ namespace PrescriptionManagementSystem {
         infosys202125DataSet infosys202125DataSet;
         infosys202125DataSetTableAdapters.MedicineTableAdapter infosys202125DataSetMedicineTableAdapter;
         CollectionViewSource medicineViewSource;
+
         public AddData() {
             InitializeComponent();
             infosys202125DataSet = ((PrescriptionManagementSystem.infosys202125DataSet)(this.FindResource("infosys202125DataSet")));
@@ -42,15 +43,11 @@ namespace PrescriptionManagementSystem {
 
         private void Add_Click(object sender, RoutedEventArgs e) {
             try {
-                new MedicineTableAdapter().InsertData(nameTextBox.Text, typeComboBox.Text,
+                new MedicineTableAdapter().InsertData(nameTextBox.Text, typeTextBox.Text,
                                                   intervalDatePicker.Text, dosingTextBox.Text, precautionTextBox.Text,
                                                   useridTextBox.Text);
                 MessageBox.Show("追加しました。");
-                
-
                 this.Close();
-                
-                
             }
             catch (Exception) {
 
@@ -59,5 +56,6 @@ namespace PrescriptionManagementSystem {
             
 
         }
+
     }
 }

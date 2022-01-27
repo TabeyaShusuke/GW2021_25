@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +29,7 @@ namespace PrescriptionManagementSystem {
 
         public Prescription(User name) {
             InitializeComponent();
+            
             infosys202125DataSet = ((PrescriptionManagementSystem.infosys202125DataSet)(this.FindResource("infosys202125DataSet")));
             // テーブル Medicine にデータを読み込みます。必要に応じてこのコードを変更できます。
             infosys202125DataSetMedicineTableAdapter = new PrescriptionManagementSystem.infosys202125DataSetTableAdapters.MedicineTableAdapter();
@@ -34,10 +37,19 @@ namespace PrescriptionManagementSystem {
             medicineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("medicineViewSource")));
             medicineViewSource.View.MoveCurrentToFirst();
             user = name;
-
         }
 
         private void Change_button_Click(object sender, RoutedEventArgs e) {
+            infosys202125DataSetMedicineTableAdapter.Update(infosys202125DataSet);
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e) {
+            new MedicineTableAdapter().Searching(infosys202125DataSet.Medicine, SearchName.Text,Searcid.Text);
+            
+        }
+
+        private void pmda_Click(object sender, RoutedEventArgs e) {
+            Process.Start("https://www.pmda.go.jp/PmdaSearch/iyakuSearch/");
 
         }
 
@@ -47,18 +59,15 @@ namespace PrescriptionManagementSystem {
             infosys202125DataSet = ((PrescriptionManagementSystem.infosys202125DataSet)(this.FindResource("infosys202125DataSet")));
             // テーブル Medicine にデータを読み込みます。必要に応じてこのコードを変更できます。
             infosys202125DataSetMedicineTableAdapter = new PrescriptionManagementSystem.infosys202125DataSetTableAdapters.MedicineTableAdapter();
-            infosys202125DataSetMedicineTableAdapter.Fill(infosys202125DataSet.Medicine);
+            infosys202125DataSetMedicineTableAdapter.FillByUser(infosys202125DataSet.Medicine,user.Id,user.Password);
             medicineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("medicineViewSource")));
             medicineViewSource.View.MoveCurrentToFirst();
-
         }
 
-        private void Search_button_Click(object sender, RoutedEventArgs e) {
+        private void Done_Click(object sender, RoutedEventArgs e) {
             
         }
 
-        private void Logout_Click(object sender, RoutedEventArgs e) {
-            
-        }
+        
     }
 }
