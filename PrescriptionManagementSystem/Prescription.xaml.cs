@@ -65,7 +65,11 @@ namespace PrescriptionManagementSystem {
         }
 
         private void Done_Click(object sender, RoutedEventArgs e) {
-            
+            if (this.NavigationService.CanGoBack) {
+                this.NavigationService.GoBack();
+            } else {
+                MessageBox.Show("No entries in back navigation history.");
+            }
         }
 
         

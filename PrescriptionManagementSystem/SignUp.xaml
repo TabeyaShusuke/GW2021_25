@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PrescriptionManagementSystem"
         mc:Ignorable="d"
-        Title="SignUp" Height="232.163" Width="240.392" Loaded="Window_Loaded">
+        Title="SignUp" Height="232.163" Width="240.392" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Window.Resources>
         <local:infosys202125DataSet x:Key="infosys202125DataSet"/>
         <CollectionViewSource x:Key="userViewSource" Source="{Binding User, Source={StaticResource infosys202125DataSet}}"/>

@@ -5,8 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PrescriptionManagementSystem"
       mc:Ignorable="d" 
-      Title="Login" Height="359.24" Width="422.177"
-      >
+      Title="Login" Height="370" Width="430">
     <Grid Background="#FFE2EEE5" Margin="0,0,-12,2">
         <StackPanel Orientation="Vertical" Margin="1,-3,-2,-1">
             <Label Content="ログイン画面" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="124,0,112,0" Width="176" />
@@ -19,8 +18,8 @@
                 <PasswordBox x:Name="Password" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,12" Width="245" Height="48" PasswordChar="●" FontSize="36"/>
             </StackPanel>
             <StackPanel Height="110" Orientation="Horizontal">
-                <Button FontSize="30" Content="新規登録" x:Name="Addwindow" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Addwindow_Click" Margin="100,34,0,29" Width="132" Height="47"/>
-                <Button FontSize="30" Content="ログイン" x:Name="Loginwindow" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Login_Click" Margin="30,0,0,0" Width="128"/>
+                <Button FontSize="30" Content="新規登録" x:Name="Addwindow" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Addwindow_Click" Margin="10" Width="130" Height="50" />
+                <Button FontSize="30" Content="ログイン" x:Name="Loginwindow" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Login_Click" Margin="130,0,0,0" Width="130" Height="50"/>
 
             </StackPanel>
         </StackPanel>

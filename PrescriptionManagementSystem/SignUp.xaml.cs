@@ -38,8 +38,6 @@ namespace PrescriptionManagementSystem {
 
         private void Signup_Click(object sender, RoutedEventArgs e) {
             try {
-                idTextBox.Text = string.Empty;
-                passwordTextBox.Text = string.Empty;
                 new UserTableAdapter().InsertUser(idTextBox.Text, passwordTextBox.Text);
                 MessageBox.Show("登録完了しました。");
                 this.Close();
