@@ -43,9 +43,9 @@ namespace PrescriptionManagementSystem {
 
         private void Add_Click(object sender, RoutedEventArgs e) {
             try {
-                new MedicineTableAdapter().InsertData(nameTextBox.Text, typeTextBox.Text,
-                                                  intervalDatePicker.Text, dosingTextBox.Text, precautionTextBox.Text,
-                                                  useridTextBox.Text);
+                new MedicineTableAdapter().InsertData(Name.Text, Type.Text,
+                                                  Interval.Text, Dosing.Text, Precaution.Text,
+                                                  Userid.Text);
                 MessageBox.Show("追加しました。");
                 this.Close();
             }

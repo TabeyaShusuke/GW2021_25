@@ -19,16 +19,21 @@ namespace PrescriptionManagementSystem {
     /// </summary>
     public partial class SignUp : Window {
 
+        infosys202125DataSet infosys202125DataSet;
+        infosys202125DataSetTableAdapters.UserTableAdapter infosys202125DataSetUserTableAdapter;
+        CollectionViewSource userViewSource;
+
         public SignUp() {
             InitializeComponent();
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
-            PrescriptionManagementSystem.infosys202125DataSet infosys202125DataSet = ((PrescriptionManagementSystem.infosys202125DataSet)(this.FindResource("infosys202125DataSet")));
+            infosys202125DataSet = ((PrescriptionManagementSystem.infosys202125DataSet)(this.FindResource("infosys202125DataSet")));
             // テーブル User にデータを読み込みます。必要に応じてこのコードを変更できます。
-            PrescriptionManagementSystem.infosys202125DataSetTableAdapters.UserTableAdapter infosys202125DataSetUserTableAdapter = new PrescriptionManagementSystem.infosys202125DataSetTableAdapters.UserTableAdapter();
+            infosys202125DataSetUserTableAdapter = new PrescriptionManagementSystem.infosys202125DataSetTableAdapters.UserTableAdapter();
             infosys202125DataSetUserTableAdapter.Fill(infosys202125DataSet.User);
-            System.Windows.Data.CollectionViewSource userViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("userViewSource")));
+            userViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("userViewSource")));
             userViewSource.View.MoveCurrentToFirst();
         }
 
@@ -37,17 +42,28 @@ namespace PrescriptionManagementSystem {
         }
 
         private void Signup_Click(object sender, RoutedEventArgs e) {
-            try {
-                new UserTableAdapter().InsertUser(idTextBox.Text, passwordTextBox.Text);
+            
+            if (string.IsNullOrEmpty(Id.Text) || string.IsNullOrEmpty(Password.Password) || 
+                string.IsNullOrEmpty(Confirmation.Password) || string.IsNullOrWhiteSpace(Confirmation.Password) ||
+                string.IsNullOrWhiteSpace(Id.Text) || string.IsNullOrWhiteSpace(Password.Password)) {
+                MessageBox.Show("入力エラー");
+                Empty();
+            } else if (Password.Password == Confirmation.Password) {
+                new UserTableAdapter().InsertUser(Id.Text, Password.Password);
+                infosys202125DataSetUserTableAdapter.Fill(infosys202125DataSet.User);
                 MessageBox.Show("登録完了しました。");
                 this.Close();
+            } else {
+                MessageBox.Show("パスワードが一致しません。");
+                Empty();
             }
-            catch (Exception) {
-                MessageBox.Show("既に登録済みです。");
-            }
-            
         }
 
+        private void Empty() {
+            Id.Text = string.Empty;
+            Password.Password = string.Empty;
+            Confirmation.Password = string.Empty;
+        }
         
     }
 }

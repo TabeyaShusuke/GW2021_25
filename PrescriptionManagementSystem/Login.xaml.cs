@@ -19,6 +19,7 @@ namespace PrescriptionManagementSystem {
     /// Login.xaml の相互作用ロジック
     /// </summary>
     public partial class Login : Page {
+        
         public Login() {
             InitializeComponent();
         }
@@ -31,10 +32,13 @@ namespace PrescriptionManagementSystem {
                 login.Password = user.First().password;
                 var anotherpage = new Prescription(login);
                 NavigationService.Navigate(anotherpage);
+                UserId.Text = string.Empty;
+                Password.Password = string.Empty;
             }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-                
+            catch (Exception ) {
+                MessageBox.Show("見つかりませんでした。");
+                UserId.Text = string.Empty;
+                Password.Password = string.Empty;
             }
         }
 
@@ -42,5 +46,7 @@ namespace PrescriptionManagementSystem {
             var win = new SignUp();
             win.ShowDialog();
         }
+
+        
     }
 }

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PrescriptionManagementSystem"
+      xmlns:wfc="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Prescription">
@@ -19,32 +20,41 @@
             <Label Content="ユーザー名:" Margin="0,20,0,0" FontSize="24"/>
             <TextBox x:Name="Searcid" HorizontalAlignment="Left" Height="36" Margin="0,30,0,0" VerticalAlignment="Top" Width="122"  FontSize="24"/>
             <Button x:Name="Search" Content="検索" Margin="20,32,0,14" Click="Search_Click" Width="73"/>
-            <Button x:Name="Done" Content="終了" HorizontalAlignment="Left" Margin="200,32,0,0" VerticalAlignment="Top" Width="73" Height="33" Click="Done_Click"/>
+            <Label  x:Name="ti" HorizontalAlignment="Left" VerticalAlignment="Center" Width="75" Height="50" Margin="10"/>
+            <Button x:Name="Done" Content="終了" HorizontalAlignment="Left" Margin="110,34,5,0" VerticalAlignment="Top" Width="73" Height="33" Click="Done_Click"/>
 
         </StackPanel>
-        <StackPanel  Orientation="Horizontal" Margin="0,76,0,98" >
-            <DataGrid AlternatingRowBackground="LightCyan" x:Name="medicineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,11" RowDetailsVisibilityMode="VisibleWhenSelected" Width="755" CanUserAddRows="False">
+        <StackPanel  Orientation="Horizontal" Margin="0,76,0,69" >
+            <DataGrid AlternatingRowBackground="LightCyan" x:Name="medicineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,11,10,2" RowDetailsVisibilityMode="VisibleWhenSelected" Width="784" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <!--<DataGridTextColumn x:Name="useridColumn" Binding="{Binding userid}" Header="userid" Width="SizeToHeader"/>-->
-                    <!--<DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="SizeToHeader"/>-->
-                    <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="*"/>
-                    <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type}" Header="Type" Width="*"/>
-                    <DataGridTemplateColumn x:Name="intervalColumn" Header="Interval" Width="*">
+                    <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="薬名" Width="*"/>
+                    <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type}" Header="剤形" Width="*"/>
+                    <DataGridTemplateColumn x:Name="intervalColumn" Header="服薬日" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <DatePicker SelectedDate="{Binding Interval, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn x:Name="dosingColumn" Binding="{Binding dosing}" Header="dosing" Width="*"/>
-                    <DataGridTextColumn x:Name="precautionColumn" Binding="{Binding Precaution}" Header="Precaution" Width="*"/>
+                    <DataGridTextColumn x:Name="dosingColumn" Binding="{Binding dosing}" Header="服用間隔" Width="*"/>
+                    <DataGridTextColumn x:Name="precautionColumn" Binding="{Binding Precaution}" Header="注意" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="2,354,0,0" RenderTransformOrigin="0.603,0.583">
+        <StackPanel Orientation="Horizontal" Margin="2,300,0,-2" RenderTransformOrigin="0.603,0.583">
             <Button Content="追加" x:Name="Add_button" Click="Add_button_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,-20,0,0" Height="50" Width="70"/>
             <Button Content="更新" x:Name="Change_button" Click="Change_button_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,-20,0,0" Height="50" Width="70"/>
             <Button Content="添付文書" x:Name="pmda" Click="pmda_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,-20,0,0" Width="70" Height="50"/>
+            <WindowsFormsHost FontSize="30" Margin="10,-20,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="70" Height="50"  >
+                <wfc:NumericUpDown x:Name="Hour" x:FieldModifier="public" Maximum="24" Minimum="0" ReadOnly="False" Width="70" Height="50" Margin="10,10,0,0" />
+            </WindowsFormsHost>
+            <Label Content="時" FontSize="30" Margin="10,-20,0,0" Height="50" />
+            <WindowsFormsHost FontSize="30" Margin="10,-20,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="70" Height="50"  >
+                <wfc:NumericUpDown x:Name="Min" x:FieldModifier="public" Maximum="59" Minimum="0" ReadOnly="False" Width="70" Height="50" Margin="10,10,0,0"/>
+            </WindowsFormsHost>
+            <Label Content="分" FontSize="30" Margin="10,-20,0,0" Height="50" />
+            <Button Content="アラーム" x:Name="Alarm" Margin="10,-20,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="70" Height="50" FontSize="20" Click="Alarm_Click"/>
+            <Button Content="リセット" x:Name="Reset" Margin="10,-20,0,0" Width="75" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Reset_Click"/>
         </StackPanel>
     </Grid>
 </Page>
