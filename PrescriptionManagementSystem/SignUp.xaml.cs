@@ -42,21 +42,27 @@ namespace PrescriptionManagementSystem {
         }
 
         private void Signup_Click(object sender, RoutedEventArgs e) {
-            
-            if (string.IsNullOrEmpty(Id.Text) || string.IsNullOrEmpty(Password.Password) || 
+            try {
+                if (string.IsNullOrEmpty(Id.Text) || string.IsNullOrEmpty(Password.Password) ||
                 string.IsNullOrEmpty(Confirmation.Password) || string.IsNullOrWhiteSpace(Confirmation.Password) ||
                 string.IsNullOrWhiteSpace(Id.Text) || string.IsNullOrWhiteSpace(Password.Password)) {
-                MessageBox.Show("入力エラー");
-                Empty();
-            } else if (Password.Password == Confirmation.Password) {
-                new UserTableAdapter().InsertUser(Id.Text, Password.Password);
-                infosys202125DataSetUserTableAdapter.Fill(infosys202125DataSet.User);
-                MessageBox.Show("登録完了しました。");
-                this.Close();
-            } else {
-                MessageBox.Show("パスワードが一致しません。");
+                    MessageBox.Show("入力エラー");
+                    Empty();
+                } else if (Password.Password == Confirmation.Password) {
+                    new UserTableAdapter().InsertUser(Id.Text, Password.Password);
+                    infosys202125DataSetUserTableAdapter.Fill(infosys202125DataSet.User);
+                    MessageBox.Show("登録完了しました。");
+                    this.Close();
+                } else {
+                    MessageBox.Show("パスワードが一致しません。");
+                    Empty();
+                }
+            }
+            catch (Exception) {
+                MessageBox.Show("既に登録済みです。");
                 Empty();
             }
+            
         }
 
         private void Empty() {

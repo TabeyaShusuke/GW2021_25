@@ -18,11 +18,12 @@ namespace PrescriptionManagementSystem {
     /// AddData.xaml の相互作用ロジック
     /// </summary>
     public partial class AddData : Window {
+        User user;
         infosys202125DataSet infosys202125DataSet;
         infosys202125DataSetTableAdapters.MedicineTableAdapter infosys202125DataSetMedicineTableAdapter;
         CollectionViewSource medicineViewSource;
 
-        public AddData() {
+        public AddData(User name) {
             InitializeComponent();
             infosys202125DataSet = ((PrescriptionManagementSystem.infosys202125DataSet)(this.FindResource("infosys202125DataSet")));
             // テーブル Medicine にデータを読み込みます。必要に応じてこのコードを変更できます。
@@ -30,6 +31,7 @@ namespace PrescriptionManagementSystem {
             infosys202125DataSetMedicineTableAdapter.Fill(infosys202125DataSet.Medicine);
             medicineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("medicineViewSource")));
             medicineViewSource.View.MoveCurrentToFirst();
+            user = name;
             
         }
 
@@ -45,13 +47,12 @@ namespace PrescriptionManagementSystem {
             try {
                 new MedicineTableAdapter().InsertData(Name.Text, Type.Text,
                                                   Interval.Text, Dosing.Text, Precaution.Text,
-                                                  Userid.Text);
+                                                  user.Id);
                 MessageBox.Show("追加しました。");
                 this.Close();
             }
             catch (Exception) {
-
-                throw;
+                MessageBox.Show("入力に誤りがあります。");
             }
             
 

@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PrescriptionManagementSystem"
         mc:Ignorable="d"
-        
-        Background="Transparent"
+        Background="#FFE2EEE5"
         Title="Prescription" Height="400" Width="800" ResizeMode="NoResize">
     <Grid>
         <Frame Name="frame" NavigationUIVisibility="Hidden"/>

@@ -1426,7 +1426,7 @@ SELECT Id, Name, Type, Interval, dosing, Precaution, userid FROM Medicine WHERE 
             this._commandCollection[3].CommandText = @"SELECT                      m.Name, m.Type, m.Interval, m.dosing, m.Precaution, m.userid
 FROM                         Medicine AS m INNER JOIN
                                       [User] AS u ON m.userid = u.id
-WHERE                       (m.Name LIKE @name + '%') AND (m.userid LIKE @userid + '%')";
+WHERE                       (m.Name LIKE '%' + @name + '%') AND (m.userid LIKE @userid)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@userid", global::System.Data.SqlDbType.NVarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, "userid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
