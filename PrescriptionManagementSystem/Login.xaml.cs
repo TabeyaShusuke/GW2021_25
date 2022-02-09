@@ -38,7 +38,7 @@ namespace PrescriptionManagementSystem {
                 Password.Password = string.Empty;
             }
             catch (Exception ) {
-                MessageBox.Show("見つかりませんでした。");
+                MessageBox.Show("登録されていません。" ,"エラー", MessageBoxButton.OK, MessageBoxImage.Error);
                 UserId.Text = string.Empty;
                 Password.Password = string.Empty;
             }

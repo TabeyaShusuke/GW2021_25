@@ -12,48 +12,72 @@
         <local:infosys202125DataSet x:Key="infosys202125DataSet"/>
         <CollectionViewSource x:Key="medicineViewSource" Source="{Binding Medicine, Source={StaticResource infosys202125DataSet}}"/>
     </Page.Resources>
-    <Grid DataContext="{StaticResource medicineViewSource}" Background="LightSlateGray">
+    <Grid DataContext="{StaticResource medicineViewSource}" Background="#FFE2EEE5">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="80" Width="800"  >
-            <Label Content="名前:" Margin="10,20,0,0" FontSize="24"/>
-            <TextBox x:Name="SearchName" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Margin="0,20,0,0" Height="36" Width="122" FontSize="24" />
-            <Label Content="ユーザー名:" Margin="0,20,0,0" FontSize="24"/>
+            <Label Content="ユーザー名:" Margin="10,20,0,0" FontSize="24"/>
             <Label x:Name="Searcid" HorizontalAlignment="Left" Height="36" Margin="0,20,0,0" VerticalAlignment="Top" Width="110"  FontSize="24"/>
-            <Button x:Name="Search" Content="検索" Margin="10,32,0,14" Click="Search_Click" Width="73" FontSize="20"/>
-            <Label  x:Name="ti" HorizontalAlignment="Left" VerticalAlignment="Center" Width="110" Height="50" Margin="10,20,10,10" FontSize="24"/>
-            <Button x:Name="Done" Content="終了" HorizontalAlignment="Left" Margin="30,34,5,0" VerticalAlignment="Top" Width="73" Height="33" Click="Done_Click" FontSize="20"/>
+            <Label Content="薬名:" Margin="10,20,0,0" FontSize="24"/>
+            <TextBox x:Name="SearchName" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Margin="0,10,0,0" Height="36" Width="200" FontSize="24" />
+            <Button x:Name="Search" Content="検索" Margin="10,28,0,14" Click="Search_Click" Width="73" FontSize="20" Height="33"/>
+            <Button x:Name="Done" Content="終了" HorizontalAlignment="Left" Margin="120,28,5,0" VerticalAlignment="Top" Width="73" Height="33" Click="Done_Click" FontSize="20"/>
 
         </StackPanel>
         <StackPanel  Orientation="Horizontal" Margin="0,76,0,69" >
-            <DataGrid AlternatingRowBackground="LightCyan" x:Name="medicineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,10,10,10" RowDetailsVisibilityMode="VisibleWhenSelected" Width="773" CanUserAddRows="False">
+            <DataGrid AlternatingRowBackground="LightCyan" x:Name="medicineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="10,10,10,10" RowDetailsVisibilityMode="VisibleWhenSelected" Width="773" CanUserAddRows="False" FontSize="15">
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="薬名" Width="*"/>
-                    <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type}" Header="剤形" Width="*"/>
+                    <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="薬名" Width="*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type}" Header="剤形" Width="*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                     <DataGridTemplateColumn x:Name="intervalColumn" Header="処方日" Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <DatePicker SelectedDate="{Binding Interval, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        <DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate >
+                                <DatePicker SelectedDate="{Binding Interval}"  />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn x:Name="dosingColumn" Binding="{Binding dosing}" Header="服用間隔" Width="*"/>
-                    <DataGridTextColumn x:Name="precautionColumn" Binding="{Binding Precaution}" Header="注意" Width="*"/>
+                    <DataGridTextColumn x:Name="dosingColumn" Binding="{Binding Dosing}" Header="服用間隔" Width="*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="precautionColumn" Binding="{Binding Precaution}" Header="注意" Width="*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="2,300,0,-2" RenderTransformOrigin="0.603,0.583">
-            <Button Content="追加" x:Name="Add_button" Click="Add_button_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,-20,0,0" Height="50" Width="70" FontSize="20"/>
-            <Button Content="更新" x:Name="Change_button" Click="Change_button_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,-20,0,0" Height="50" Width="70" FontSize="20"/>
-            <Button Content="添付文書" x:Name="pmda" Click="pmda_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,-20,0,0" Width="85" Height="50" FontSize="20"/>
-            <WindowsFormsHost FontSize="30" Margin="10,-20,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="70" Height="50"  >
+            <Button Content="お薬登録" x:Name="Add_button" Click="Add_button_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,-10,0,0" Height="50" Width="85" FontSize="20"/>
+            <Button Content="更新" x:Name="Change_button" Click="Change_button_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,-10,0,0" Height="50" Width="70" FontSize="20"/>
+            <WindowsFormsHost FontSize="30" Margin="10,-10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="70" Height="50"  >
                 <wfc:NumericUpDown x:Name="Hour" x:FieldModifier="public" Maximum="24" Minimum="0" ReadOnly="False" Width="70" Height="50" Margin="10,10,0,0" />
             </WindowsFormsHost>
-            <Label Content="時" FontSize="30" Margin="10,-20,0,0" Height="50" />
-            <WindowsFormsHost FontSize="30" Margin="10,-20,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="70" Height="50"  >
+            <Label Content="時" FontSize="30" Margin="10,-10,0,0" Height="50" />
+            <WindowsFormsHost FontSize="30" Margin="10,-10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="70" Height="50"  >
                 <wfc:NumericUpDown x:Name="Min" x:FieldModifier="public" Maximum="59" Minimum="0" ReadOnly="False" Width="70" Height="50" Margin="10,10,0,0"/>
             </WindowsFormsHost>
-            <Label Content="分" FontSize="30" Margin="10,-20,0,0" Height="50" />
-            <Button Content="アラーム" x:Name="Alarm" Margin="10,-20,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="70" Height="50" FontSize="20" Click="Alarm_Click"/>
-            <Button Content="リセット" x:Name="Reset" Margin="10,-20,0,0" Width="75" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Reset_Click" FontSize="20"/>
+            <Label Content="分" FontSize="30" Margin="10,-10,0,0" Height="50" />
+            <Button Content="アラーム" Padding="5" x:Name="Alarm" Margin="10,-10,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="70" Height="50" FontSize="20" Click="Alarm_Click"/>
+            <Button Content="リセット" x:Name="Reset" Margin="10,-10,0,0" Width="75" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Reset_Click" FontSize="20"/>
+            <Label  x:Name="ti" HorizontalAlignment="Left" VerticalAlignment="Center" Width="174" Height="50" Margin="10,-10,0,0" FontSize="30"/>
+
         </StackPanel>
     </Grid>
 </Page>

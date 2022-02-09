@@ -46,7 +46,7 @@ namespace PrescriptionManagementSystem {
                 if (string.IsNullOrEmpty(Id.Text) || string.IsNullOrEmpty(Password.Password) ||
                 string.IsNullOrEmpty(Confirmation.Password) || string.IsNullOrWhiteSpace(Confirmation.Password) ||
                 string.IsNullOrWhiteSpace(Id.Text) || string.IsNullOrWhiteSpace(Password.Password)) {
-                    MessageBox.Show("入力エラー");
+                    MessageBox.Show("入力に誤りがあります。", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
                     Empty();
                 } else if (Password.Password == Confirmation.Password) {
                     new UserTableAdapter().InsertUser(Id.Text, Password.Password);
@@ -59,7 +59,7 @@ namespace PrescriptionManagementSystem {
                 }
             }
             catch (Exception) {
-                MessageBox.Show("既に登録済みです。");
+                MessageBox.Show("既に登録済みです。", "エラー", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 Empty();
             }
             

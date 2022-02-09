@@ -5,25 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PrescriptionManagementSystem"
         mc:Ignorable="d"
-        Title="SignUp" Height="260.163" Width="240.39" Loaded="Window_Loaded" ResizeMode="NoResize">
+        Background="#FFE2EEE5"
+        Title="新規登録" Height="264.83" Width="277.057" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Window.Resources>
         <local:infosys202125DataSet x:Key="infosys202125DataSet"/>
         <CollectionViewSource x:Key="userViewSource" Source="{Binding User, Source={StaticResource infosys202125DataSet}}"/>
     </Window.Resources>
     <Grid Margin="0,0,0,0" DataContext="{StaticResource userViewSource}">
         <StackPanel Margin="0,0,0,175" Orientation="Horizontal">
-            <Label Content="ユーザー名" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
-            <TextBox x:Name="Id" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="129" FontSize="20" Height="25"/>
+            <Label Content="ユーザー名" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="20"/>
+            <TextBox x:Name="Id" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="45,0,0,0" Width="105" FontSize="20" Height="25"/>
         </StackPanel>
-        <StackPanel Margin="-4,58,4,0" Height="58" VerticalAlignment="Top" Orientation="Horizontal">
-            <Label Content="パスワード" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
-            <PasswordBox PasswordChar="●" x:Name="Password" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="135" FontSize="20" Height="25"/>
+        <StackPanel Margin="0,53,3,0" Height="58" VerticalAlignment="Top" Orientation="Horizontal">
+            <Label Content="パスワード" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="20"/>
+            <PasswordBox PasswordChar="●" x:Name="Password" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,0,0,0" Width="105" FontSize="20" Height="25"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="-1,123,1,60">
-            <Label Content="確認パスワード" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
-            <PasswordBox PasswordChar="●" x:Name="Confirmation" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="106" FontSize="20" Height="25"/>
+            <Label Content="確認パスワード" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="20"/>
+            <PasswordBox PasswordChar="●" x:Name="Confirmation" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="13,0,0,0" Width="105" FontSize="20" Height="25"/>
         </StackPanel>
-        <Button Content="キャンセル" x:Name="Cancel" Click="Cancel_Click" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="9,0,0,33"/>
-        <Button Content="登録" x:Name="Signup" Click="Signup_Click" Width="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,33"/>
+        <Button Content="キャンセル" x:Name="Cancel" Click="Cancel_Click" Width="65" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="9,0,0,23" FontSize="15"/>
+        <Button Content="登録" x:Name="Signup" Click="Signup_Click" Width="65" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,12,23" FontSize="15"/>
     </Grid>
 </Window>

@@ -46,13 +46,13 @@ namespace PrescriptionManagementSystem {
         private void Add_Click(object sender, RoutedEventArgs e) {
             try {
                 new MedicineTableAdapter().InsertData(Name.Text, Type.Text,
-                                                  Interval.Text, Dosing.Text, Precaution.Text,
+                                                  Interval.Text, dosing.Text, Precaution.Text,
                                                   user.Id);
                 MessageBox.Show("追加しました。");
                 this.Close();
             }
             catch (Exception) {
-                MessageBox.Show("入力に誤りがあります。");
+                MessageBox.Show("入力に誤りがあります。", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
 

@@ -20,10 +20,7 @@
             <StackPanel Height="110" Orientation="Horizontal">
                 <Button FontSize="30" Content="新規登録" x:Name="Addwindow" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Addwindow_Click" Margin="10" Width="130" Height="50" />
                 <Button FontSize="30" Content="ログイン" x:Name="Loginwindow" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Login_Click" Margin="130,0,0,0" Width="130" Height="50"/>
-
             </StackPanel>
         </StackPanel>
-
-
     </Grid>
 </Page>

@@ -1423,7 +1423,7 @@ SELECT Id, Name, Type, Interval, dosing, Precaution, userid FROM Medicine WHERE 
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@userid", global::System.Data.SqlDbType.NVarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, "userid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT                      m.Name, m.Type, m.Interval, m.dosing, m.Precaution, m.userid
+            this._commandCollection[3].CommandText = @"SELECT                      m.Id, m.Name, m.Type, m.Interval, m.dosing, m.Precaution, m.userid
 FROM                         Medicine AS m INNER JOIN
                                       [User] AS u ON m.userid = u.id
 WHERE                       (m.Name LIKE '%' + @name + '%') AND (m.userid LIKE @userid)";
@@ -1434,7 +1434,7 @@ WHERE                       (m.Name LIKE '%' + @name + '%') AND (m.userid LIKE @
             this._commandCollection[4].Connection = this.Connection;
             this._commandCollection[4].CommandText = @"UPDATE                    Medicine
 SET                              Name = @Name, Type = @Type, Interval = @Interval, dosing = @dosing, Precaution = @Precaution
-WHERE                       (Name LIKE @original) AND (userid LIKE @originalid); 
+WHERE                       (Id = @Original_Id);      
 SELECT Id, Name, Type, Interval, dosing, Precaution, userid FROM Medicine WHERE (Id = @Id)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1442,8 +1442,7 @@ SELECT Id, Name, Type, Interval, dosing, Precaution, userid FROM Medicine WHERE 
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Interval", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "Interval", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dosing", global::System.Data.SqlDbType.NVarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, "dosing", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Precaution", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Precaution", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@original", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@originalid", global::System.Data.SqlDbType.NVarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, "userid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -1532,7 +1531,7 @@ SELECT Id, Name, Type, Interval, dosing, Precaution, userid FROM Medicine WHERE 
                 this.Adapter.SelectCommand.Parameters[0].Value = ((string)(name));
             }
             if ((userid == null)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("userid");
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((string)(userid));
@@ -1557,7 +1556,7 @@ SELECT Id, Name, Type, Interval, dosing, Precaution, userid FROM Medicine WHERE 
                 this.Adapter.SelectCommand.Parameters[0].Value = ((string)(name));
             }
             if ((userid == null)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("userid");
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((string)(userid));
@@ -1893,7 +1892,7 @@ SELECT Id, Name, Type, Interval, dosing, Precaution, userid FROM Medicine WHERE 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateQuery(string Name, string Type, string Interval, string dosing, string Precaution, string original, string originalid, int Id) {
+        public virtual int UpdateQuery2(string Name, string Type, string Interval, string dosing, string Precaution, int Original_Id, int Id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             if ((Name == null)) {
                 throw new global::System.ArgumentNullException("Name");
@@ -1908,13 +1907,13 @@ SELECT Id, Name, Type, Interval, dosing, Precaution, userid FROM Medicine WHERE 
                 command.Parameters[1].Value = ((string)(Type));
             }
             if ((Interval == null)) {
-                command.Parameters[2].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("Interval");
             }
             else {
                 command.Parameters[2].Value = ((string)(Interval));
             }
             if ((dosing == null)) {
-                command.Parameters[3].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("dosing");
             }
             else {
                 command.Parameters[3].Value = ((string)(dosing));
@@ -1925,19 +1924,8 @@ SELECT Id, Name, Type, Interval, dosing, Precaution, userid FROM Medicine WHERE 
             else {
                 command.Parameters[4].Value = ((string)(Precaution));
             }
-            if ((original == null)) {
-                throw new global::System.ArgumentNullException("original");
-            }
-            else {
-                command.Parameters[5].Value = ((string)(original));
-            }
-            if ((originalid == null)) {
-                command.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                command.Parameters[6].Value = ((string)(originalid));
-            }
-            command.Parameters[7].Value = ((int)(Id));
+            command.Parameters[5].Value = ((int)(Original_Id));
+            command.Parameters[6].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

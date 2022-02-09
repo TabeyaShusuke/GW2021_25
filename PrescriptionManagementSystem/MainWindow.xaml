@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PrescriptionManagementSystem"
         mc:Ignorable="d"
         Background="#FFE2EEE5"
-        Title="Prescription" Height="400" Width="800" ResizeMode="NoResize">
+        Title="お薬履歴" Height="400" Width="800" ResizeMode="NoResize">
     <Grid>
         <Frame Name="frame" NavigationUIVisibility="Hidden"/>
     </Grid>

@@ -23,7 +23,7 @@ namespace PrescriptionManagementSystem {
     /// </summary>
 
     public partial class Prescription : Page {
-
+        
         User user;
         infosys202125DataSet infosys202125DataSet;
         infosys202125DataSetTableAdapters.MedicineTableAdapter infosys202125DataSetMedicineTableAdapter;
@@ -41,18 +41,21 @@ namespace PrescriptionManagementSystem {
 
             timer = new DispatcherTimer(DispatcherPriority.Background);
             timer.Tick += Timer_Tick;
-            timer.Interval = new TimeSpan(0,0,5);
+            timer.Interval = new TimeSpan(0,0,1);
             timer.Start();
             
 
             infosys202125DataSet = ((PrescriptionManagementSystem.infosys202125DataSet)(this.FindResource("infosys202125DataSet")));
             // テーブル Medicine にデータを読み込みます。必要に応じてこのコードを変更できます。
             infosys202125DataSetMedicineTableAdapter = new PrescriptionManagementSystem.infosys202125DataSetTableAdapters.MedicineTableAdapter();
-            infosys202125DataSetMedicineTableAdapter.FillByUser(infosys202125DataSet.Medicine, name.Id, name.Password);
+            medicineDataGrid.ItemsSource = infosys202125DataSetMedicineTableAdapter.GetDataByUser(name.Id, name.Password).Select(x => new Medicine { Id = x.Id,Name = x.Name,Type = x.Type,Interval = x.Interval,
+                                                                                                        Dosing = x.dosing, Precaution = x.Precaution, Userid = x.userid}).ToList();
             medicineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("medicineViewSource")));
             medicineViewSource.View.MoveCurrentToFirst();
             user = name;
             Searcid.Content = user.Id;
+
+            Reset.IsEnabled = false;
         }
 
         private void Clock_Tick(object sender, EventArgs e) {
@@ -64,7 +67,6 @@ namespace PrescriptionManagementSystem {
         int Setting = 0;
         string alarm;
         private void Timer_Tick(object sender, EventArgs e) {
-            
             if ((DateTime.Now >= alarmtime) && (Setting == 1)) {
                 MessageBox.Show("時間です。");
             }
@@ -72,46 +74,42 @@ namespace PrescriptionManagementSystem {
 
         //変更
         private void Change_button_Click(object sender, RoutedEventArgs e) {
-            try {
+            Medicine medicine = (Medicine)medicineDataGrid.SelectedItem;
 
-                infosys202125DataSetMedicineTableAdapter.Update(infosys202125DataSet);
+            if (medicine == null) {
+                MessageBox.Show("変更出来ていません", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
+            } else {
+                new MedicineTableAdapter().UpdateQuery2(medicine.Name, medicine.Type, medicine.Interval.ToString(),
+                                                        medicine.Dosing, medicine.Precaution, medicine.Id, medicine.Id);
             }
-            catch (Exception　ex) {
-                MessageBox.Show(ex.Message);
-            }
-            
         }
 
         //検索
         private void Search_Click(object sender, RoutedEventArgs e) {
-            new MedicineTableAdapter().Searching(infosys202125DataSet.Medicine, SearchName.Text, Searcid.Content.ToString());
-        }
-
-        //添付文書
-        private void pmda_Click(object sender, RoutedEventArgs e) {
-            Process.Start("https://www.pmda.go.jp/PmdaSearch/iyakuSearch/");
+            medicineDataGrid.ItemsSource = new MedicineTableAdapter().GetDataBy1(SearchName.Text, Searcid.Content.ToString()).Select(x => new Medicine {
+                Id = x.Id, Name = x.Name, Type = x.Type, Interval = x.Interval,
+                Dosing = x.dosing, Precaution = x.Precaution, Userid = x.userid
+            }).ToList();
+            SearchName.Text = string.Empty;
         }
 
         //追加
         private void Add_button_Click(object sender, RoutedEventArgs e) {
             var win = new AddData(user);
             win.ShowDialog();
-            infosys202125DataSet = ((PrescriptionManagementSystem.infosys202125DataSet)(this.FindResource("infosys202125DataSet")));
-            // テーブル Medicine にデータを読み込みます。必要に応じてこのコードを変更できます。
-            infosys202125DataSetMedicineTableAdapter = new PrescriptionManagementSystem.infosys202125DataSetTableAdapters.MedicineTableAdapter();
-            infosys202125DataSetMedicineTableAdapter.FillByUser(infosys202125DataSet.Medicine, user.Id, user.Password);
-            medicineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("medicineViewSource")));
-            medicineViewSource.View.MoveCurrentToFirst();
+            medicineDataGrid.ItemsSource = infosys202125DataSetMedicineTableAdapter.GetDataByUser(user.Id, user.Password).Select(x => new Medicine {
+                Id = x.Id, Name = x.Name, Type = x.Type, Interval = x.Interval,
+                Dosing = x.dosing, Precaution = x.Precaution, Userid = x.userid
+            }).ToList();
         }
 
         //終了
         private void Done_Click(object sender, RoutedEventArgs e) {
             if (this.NavigationService.CanGoBack) {
                 this.NavigationService.GoBack();
-            } else {
-                MessageBox.Show(" ");
-            }
+            } 
         }
+
 
         //アラームリセット
         private void Reset_Click(object sender, RoutedEventArgs e) {
@@ -120,17 +118,28 @@ namespace PrescriptionManagementSystem {
             Min.Value = 0;
             Setting = 0;
             timer.Start();
+            Reset.IsEnabled = false;
             MessageBox.Show("リセットしました。");
         }
 
         //アラームセット
         private void Alarm_Click(object sender, RoutedEventArgs e) {
-            ahour = (int)Hour.Value;
-            aminute = (int)Min.Value;
-            alarm = ahour + ":" + aminute;
-            alarmtime = DateTime.Parse(alarm);
-            Setting = 1;
-            MessageBox.Show(alarmtime + "に時間を設定しました。");
+            try {
+                ahour = (int)Hour.Value;
+                aminute = (int)Min.Value;
+                alarm = ahour + ":" + aminute;
+                alarmtime = DateTime.Parse(alarm);
+                Setting = 1;
+                MessageBox.Show(alarmtime + "に時間を設定しました。");
+                Reset.IsEnabled = true;
+            }
+            catch (Exception) {
+                MessageBox.Show("24:00以降は設定出来ません。");
+                Hour.Value = 0;
+                Min.Value = 0;
+                
+            }
+            
         }
     }
 }
