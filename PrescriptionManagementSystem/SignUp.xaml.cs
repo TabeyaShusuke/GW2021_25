@@ -48,18 +48,21 @@ namespace PrescriptionManagementSystem {
                 string.IsNullOrWhiteSpace(Id.Text) || string.IsNullOrWhiteSpace(Password.Password)) {
                     MessageBox.Show("入力に誤りがあります。", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
                     Empty();
-                } else if (Password.Password == Confirmation.Password) {
+                } else if (Password.Password.Length < 4 && Password.Password == Confirmation.Password) {
+                    MessageBox.Show("パスワードは四文字以上入力してください。", "注意", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    Empty();
+                } else if (Password.Password == Confirmation.Password && Id.Text.Length <= 10 && Password.Password.Length <= 10) {
                     new UserTableAdapter().InsertUser(Id.Text, Password.Password);
                     infosys202125DataSetUserTableAdapter.Fill(infosys202125DataSet.User);
-                    MessageBox.Show("登録完了しました。");
+                    MessageBox.Show("登録完了しました。", "完了", MessageBoxButton.OK);
                     this.Close();
                 } else {
-                    MessageBox.Show("パスワードが一致しません。");
+                    MessageBox.Show("入力に誤りがあります。", "エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
                     Empty();
                 }
             }
             catch (Exception) {
-                MessageBox.Show("既に登録済みです。", "エラー", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("既に登録済みです。", "登録済み", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 Empty();
             }
             

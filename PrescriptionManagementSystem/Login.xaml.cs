@@ -45,6 +45,8 @@ namespace PrescriptionManagementSystem {
         }
 
         private void Addwindow_Click(object sender, RoutedEventArgs e) {
+            UserId.Text = string.Empty;
+            Password.Password = string.Empty;
             var win = new SignUp();
             win.ShowDialog();
         }

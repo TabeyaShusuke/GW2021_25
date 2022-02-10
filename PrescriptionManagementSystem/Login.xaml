@@ -11,11 +11,11 @@
             <Label Content="ログイン画面" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="124,0,112,0" Width="176" />
             <StackPanel Height="122" Orientation="Horizontal">
                 <Label Content="ユーザー名" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" />
-                <TextBox x:Name="UserId" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,36" Width="243" Height="50" FontSize="36"/>
+                <TextBox x:Name="UserId" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,36" Width="243" Height="50" FontSize="36" MaxLength="10"/>
             </StackPanel>
             <StackPanel Height="72" Orientation="Horizontal">
                 <Label Content="パスワード" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,11" Height="50" Width="126" FontSize="30"/>
-                <PasswordBox x:Name="Password" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,12" Width="245" Height="48" PasswordChar="●" FontSize="36"/>
+                <PasswordBox x:Name="Password" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,12" Width="245" Height="48" PasswordChar="●" FontSize="36" MaxLength="10"/>
             </StackPanel>
             <StackPanel Height="110" Orientation="Horizontal">
                 <Button FontSize="30" Content="新規登録" x:Name="Addwindow" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Addwindow_Click" Margin="10" Width="130" Height="50" />

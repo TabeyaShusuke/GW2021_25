@@ -41,7 +41,7 @@ namespace PrescriptionManagementSystem {
 
             timer = new DispatcherTimer(DispatcherPriority.Background);
             timer.Tick += Timer_Tick;
-            timer.Interval = new TimeSpan(0,0,1);
+            timer.Interval = new TimeSpan(0,0,0);
             timer.Start();
             
 
@@ -68,14 +68,15 @@ namespace PrescriptionManagementSystem {
         string alarm;
         private void Timer_Tick(object sender, EventArgs e) {
             if ((DateTime.Now >= alarmtime) && (Setting == 1)) {
-                MessageBox.Show("時間です。");
+                MessageBox.Show("時間です。", "アラーム", MessageBoxButton.OK);
+                timer.Stop();
+                Alarm.IsEnabled = false;
             }
         }
 
-        //変更
+        //編集
         private void Change_button_Click(object sender, RoutedEventArgs e) {
             Medicine medicine = (Medicine)medicineDataGrid.SelectedItem;
-
             if (medicine == null) {
                 MessageBox.Show("変更出来ていません", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
             } else {
@@ -113,13 +114,13 @@ namespace PrescriptionManagementSystem {
 
         //アラームリセット
         private void Reset_Click(object sender, RoutedEventArgs e) {
-            timer.Stop();
             Hour.Value = 0;
             Min.Value = 0;
             Setting = 0;
             timer.Start();
             Reset.IsEnabled = false;
-            MessageBox.Show("リセットしました。");
+            Alarm.IsEnabled = true;
+            MessageBox.Show("リセットしました。","アラーム" ,MessageBoxButton.OK);
         }
 
         //アラームセット
@@ -130,16 +131,14 @@ namespace PrescriptionManagementSystem {
                 alarm = ahour + ":" + aminute;
                 alarmtime = DateTime.Parse(alarm);
                 Setting = 1;
-                MessageBox.Show(alarmtime + "に時間を設定しました。");
+                MessageBox.Show(alarmtime + "に時間を設定しました。", "アラーム", MessageBoxButton.OK);
                 Reset.IsEnabled = true;
             }
             catch (Exception) {
-                MessageBox.Show("24:00以降は設定出来ません。");
+                MessageBox.Show("24:00以降は設定出来ません。","エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
                 Hour.Value = 0;
                 Min.Value = 0;
-                
             }
-            
         }
     }
 }

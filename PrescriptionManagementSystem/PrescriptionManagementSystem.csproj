@@ -149,7 +149,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Picture\" />
+    <Resource Include="Picture\薬.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Picture\medicine_capsule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Picture\med.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
