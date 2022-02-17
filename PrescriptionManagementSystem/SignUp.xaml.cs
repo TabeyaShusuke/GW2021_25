@@ -54,7 +54,7 @@ namespace PrescriptionManagementSystem {
                 } else if (Password.Password == Confirmation.Password && Id.Text.Length <= 10 && Password.Password.Length <= 10) {
                     new UserTableAdapter().InsertUser(Id.Text, Password.Password);
                     infosys202125DataSetUserTableAdapter.Fill(infosys202125DataSet.User);
-                    MessageBox.Show("登録完了しました。", "完了", MessageBoxButton.OK);
+                    MessageBox.Show("登録完了しました。", "", MessageBoxButton.OK);
                     this.Close();
                 } else {
                     MessageBox.Show("入力に誤りがあります。", "エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -62,7 +62,7 @@ namespace PrescriptionManagementSystem {
                 }
             }
             catch (Exception) {
-                MessageBox.Show("既に登録済みです。", "登録済み", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("既に登録済みです。", "", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 Empty();
             }
             
