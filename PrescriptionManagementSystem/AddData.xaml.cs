@@ -48,7 +48,7 @@ namespace PrescriptionManagementSystem {
                 new MedicineTableAdapter().InsertData(Name.Text, Type.Text,
                                                   Interval.Text, dosing.Text, Precaution.Text,
                                                   user.Id);
-                MessageBox.Show("追加しました。", "完了", MessageBoxButton.OK);
+                MessageBox.Show("追加しました。", "お薬登録", MessageBoxButton.OK);
                 this.Close();
             }
             catch (Exception) {

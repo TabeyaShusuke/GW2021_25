@@ -46,7 +46,7 @@ namespace PrescriptionManagementSystem {
                 if (string.IsNullOrEmpty(Id.Text) || string.IsNullOrEmpty(Password.Password) ||
                 string.IsNullOrEmpty(Confirmation.Password) || string.IsNullOrWhiteSpace(Confirmation.Password) ||
                 string.IsNullOrWhiteSpace(Id.Text) || string.IsNullOrWhiteSpace(Password.Password)) {
-                    MessageBox.Show("入力に誤りがあります。", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("入力に誤りがあります。", "", MessageBoxButton.OK, MessageBoxImage.Error);
                     Empty();
                 } else if (Password.Password.Length < 4 && Password.Password == Confirmation.Password) {
                     MessageBox.Show("パスワードは四文字以上入力してください。", "注意", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -57,7 +57,7 @@ namespace PrescriptionManagementSystem {
                     MessageBox.Show("登録完了しました。", "", MessageBoxButton.OK);
                     this.Close();
                 } else {
-                    MessageBox.Show("入力に誤りがあります。", "エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("入力に誤りがあります。", "", MessageBoxButton.OK, MessageBoxImage.Warning);
                     Empty();
                 }
             }
